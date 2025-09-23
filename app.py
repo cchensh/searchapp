@@ -40,7 +40,7 @@ class FilterOptions(TypedDict):
 class SearchFilter(TypedDict):
     name: str
     display_name: str
-    filter_type: FilterType
+    type: FilterType
     options: Optional[List[FilterOptions]]
 
 class Song(TypedDict):
