@@ -225,13 +225,13 @@ def handle_filters_step_event(
             {
                 "name": "bands",
                 "display_name": "Bands",
-                "filter_type": FilterType.MULTI_SELECT.value,
+                "type": FilterType.MULTI_SELECT.value,
                 "options": [{"name": band, "value": band} for band in unique_bands],
             },
             {
                 "name": "is_single",
                 "display_name": "Singles Only",
-                "filter_type": FilterType.TOGGLE.value,
+                "type": FilterType.TOGGLE.value,
             },
         ]
 
