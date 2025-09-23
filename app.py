@@ -40,7 +40,7 @@ class FilterOptions(TypedDict):
 class SearchFilter(TypedDict):
     name: str
     display_name: str
-    type: FilterType
+    filter_type: FilterType
     options: Optional[List[FilterOptions]]
 
 class Song(TypedDict):
@@ -52,26 +52,6 @@ class Song(TypedDict):
     is_single: bool
     date_updated: str
 
-class LinkSharedEventLink(TypedDict):
-    url: str
-    domain: str
-
-class ExternalRef(TypedDict):
-    id: str
-    type: Optional[str]
-
-
-class EntityDetailsRequestedEvent(TypedDict):
-    type: str = "entity_details_requested"
-    user: str
-    external_ref: ExternalRef
-    trigger_id: str
-    link: LinkSharedEventLink
-
-
-class EntityDetailsRequestedBody(TypedDict):
-    team_id: str
-    event: EntityDetailsRequestedEvent
 
 #----------------------
 # DATA
@@ -249,11 +229,11 @@ def handle_flexpane_event(event, body, client, logger):
         "metadata": {
             "entity_type": "slack#/entities/item",
             "url": event["link"]["url"],
-            "external_ref": {"id": "123"},
+            "external_ref": {"id": event["external_ref"]["id"]},
             "entity_payload": {
                 "attributes": {
                     "title": {
-                        "text": "hello world",
+                        "text": "hello world for the song",
                         "edit": {
                             "enabled": True,
                             "text": {
@@ -265,9 +245,9 @@ def handle_flexpane_event(event, body, client, logger):
                 "custom_fields": [
                     {
                         "key": "description",
-                        "label": "Description",
+                        "label": "Description of the song",
                         "type": "string",
-                        "value": "This is a description",
+                        "value": "This is a description of the song",
                     },
                 ]
             },
