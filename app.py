@@ -157,7 +157,7 @@ SONGS: List[Song] = [
 # APPLICATION
 #----------------------
 
-client = WebClient(token=os.environ.get("SLACK_BOT_TOKEN"), base_url="https://dev.slack.com/api/")
+client = WebClient(token=os.environ.get("SLACK_BOT_TOKEN"), base_url="https://slack.com/api/")
 app = App(client=client)
 
 
